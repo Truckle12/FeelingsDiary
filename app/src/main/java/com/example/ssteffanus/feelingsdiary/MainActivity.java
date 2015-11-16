@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             case R.id.calendar:
                 openCalendar();
                 return true;
+			case R.id.entry:
+                createEntry();
+                return true;
             case R.id.quit:
                 exitRequested();
                 return true;
@@ -70,6 +73,32 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onBackPressed();
     }
 
+	 private void createEntry() {
+        DateFormat df = new SimpleDateFormat("MM dd, yyyy");
+        DateFormat tf = new SimpleDateFormat("HH:mm");
+        String date = df.format(Calendar.getInstance().getTime());
+        String time = df.format(Calendar.getInstance().getTime());
+        String mood = getString(R.string.mood_happy);
+        /* Launch feelingsEntry activity here */
+        /* startActivityForResult, return mood string */
+        /* For now, for testing purposes, mood set to happy */
+
+        HashMap<String, ArrayList<EntryClass>> mEntries = myJournal.getEntries();
+        if (mEntries == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, mood));
+            HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
+            entryHash.put(date,entryArrayList);
+            myJournal.setEntries(entryHash);
+        } else if (mEntries.get(date) == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, mood));
+            mEntries.put(date,entryArrayList);
+        } else {
+            mEntries.get(date).add(new EntryClass(date,time,mood));
+        }
+    }
+	
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
