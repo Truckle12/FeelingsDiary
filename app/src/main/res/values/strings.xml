@@ -14,7 +14,12 @@
     <string name="mood_sad">Sad</string>
     <string name="mood_scared">Scared</string>
     <string name="mood_angry">Angry</string>
+    <string name="action_example">Example action</string>
 
-
+    <string name="title_section1">Profile</string>
+    <string name="title_section2">Settings</string>
+    <string name="title_section3">Status</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>
