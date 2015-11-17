@@ -36,7 +36,7 @@ public class DaySelectActivity extends Activity implements View.OnClickListener{
         TextView mTextView = (TextView) findViewById(R.id.textView2);
         mTextView.setText(dateStr);
 
-        ArrayList<EntryClass> mEntries = MainActivity.myJournal.getEntries().get(dateStr);
+        ArrayList<EntryClass> mEntries = MainActivity.mJournal.getEntries().get(dateStr);
         if (mEntries != null) {
             int numEntries = mEntries.size();
             LinearLayout mLayout = (LinearLayout) findViewById(R.id.daySelectLinearLayout);

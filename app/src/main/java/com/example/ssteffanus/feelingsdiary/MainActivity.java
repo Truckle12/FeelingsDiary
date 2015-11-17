@@ -17,12 +17,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.*;
 import android.widget.ArrayAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private NavigationDrawerFragment mNavigationDrawerFragment;
     public static Bitmap defaultImage;
     private CharSequence mTitle;
+    public static JournalClass mJournal = new JournalClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,19 +83,19 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         DateFormat df = new SimpleDateFormat("MM dd, yyyy");
         DateFormat tf = new SimpleDateFormat("HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
-        String time = df.format(Calendar.getInstance().getTime());
+        String time = tf.format(Calendar.getInstance().getTime());
         String mood = getString(R.string.mood_happy);
         /* Launch feelingsEntry activity here */
         /* startActivityForResult, return mood string */
         /* For now, for testing purposes, mood set to happy */
 
-        HashMap<String, ArrayList<EntryClass>> mEntries = myJournal.getEntries();
+        HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
         if (mEntries == null) {
             ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
             entryArrayList.add(new EntryClass(date, time, mood));
             HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
             entryHash.put(date,entryArrayList);
-            myJournal.setEntries(entryHash);
+            mJournal.setEntries(entryHash);
         } else if (mEntries.get(date) == null) {
             ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
             entryArrayList.add(new EntryClass(date, time, mood));

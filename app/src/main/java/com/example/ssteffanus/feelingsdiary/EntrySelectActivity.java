@@ -27,7 +27,7 @@ public class EntrySelectActivity extends Activity {
             String time = b.getString("time");
             EntryClass mEntry = null;
 
-            ArrayList<EntryClass> mEntries = MainActivity.myJournal.getEntries().get(date);
+            ArrayList<EntryClass> mEntries = MainActivity.mJournal.getEntries().get(date);
             for (int i=0; i<mEntries.size(); i++) {
                 if (mEntries.get(i).getEntryTime().equals(time)) {
                     mEntry = mEntries.get(i);
