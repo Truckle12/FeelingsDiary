@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     public static Bitmap defaultImage;
     private CharSequence mTitle;
     public static JournalClass mJournal = new JournalClass();
+    static final int FEELING_ENTRY_CODE = 0;
+    private String mood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +86,12 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         DateFormat tf = new SimpleDateFormat("HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
         String time = tf.format(Calendar.getInstance().getTime());
-        String mood = getString(R.string.mood_happy);
-        /* Launch feelingsEntry activity here */
-        /* startActivityForResult, return mood string */
-        /* For now, for testing purposes, mood set to happy */
+
+        /* Launch FeelingEntryActivty activity here */
+         Intent getMood = new Intent(this, FeelingEntryActivity.class);
+         startActivityForResult(getMood, FEELING_ENTRY_CODE);
+         /* class variable mood should be now be set in OnActivityResult */
+
 
         HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
         if (mEntries == null) {
@@ -102,6 +106,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             mEntries.put(date,entryArrayList);
         } else {
             mEntries.get(date).add(new EntryClass(date,time,mood));
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == FEELING_ENTRY_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                mood = data.getExtras().getString("MOOD");
+            }
         }
     }
 	
