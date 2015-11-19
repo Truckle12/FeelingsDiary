@@ -1,5 +1,6 @@
 package com.example.ssteffanus.feelingsdiary;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,7 +10,7 @@ import android.view.View;
 import android.content.Intent;
 import android.app.Activity;
 
-public class FeelingEntryActivity extends AppCompatActivity {
+public class FeelingEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton IB_happy, IB_excited, IB_bored, IB_surprised, IB_calm, IB_disappointed, IB_sad, IB_scared, IB_angry;
 
@@ -29,15 +30,15 @@ public class FeelingEntryActivity extends AppCompatActivity {
         IB_angry = (ImageButton)findViewById(R.id.imageButton_angry);
 
 
-        IB_happy.setOnClickListener((View.OnClickListener)this);
-        IB_excited.setOnClickListener((View.OnClickListener)this);
-        IB_bored.setOnClickListener((View.OnClickListener)this);
-        IB_surprised.setOnClickListener((View.OnClickListener)this);
-        IB_calm.setOnClickListener((View.OnClickListener)this);
-        IB_disappointed.setOnClickListener((View.OnClickListener)this);
-        IB_sad.setOnClickListener((View.OnClickListener)this);
-        IB_scared.setOnClickListener((View.OnClickListener)this);
-        IB_angry.setOnClickListener((View.OnClickListener)this);
+        IB_happy.setOnClickListener(this);
+        IB_excited.setOnClickListener(this);
+        IB_bored.setOnClickListener(this);
+        IB_surprised.setOnClickListener(this);
+        IB_calm.setOnClickListener(this);
+        IB_disappointed.setOnClickListener(this);
+        IB_sad.setOnClickListener(this);
+        IB_scared.setOnClickListener(this);
+        IB_angry.setOnClickListener(this);
     }
 
     public void onClick(View v) {
