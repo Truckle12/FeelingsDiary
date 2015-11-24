@@ -17,12 +17,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.*;
 import android.widget.ArrayAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private NavigationDrawerFragment mNavigationDrawerFragment;
     public static Bitmap defaultImage;
     private CharSequence mTitle;
+    public static JournalClass mJournal = new JournalClass();
+    static final int FEELING_ENTRY_CODE = 0;
+    private String mood;
+    public String TAG ="Testing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             case R.id.calendar:
                 openCalendar();
                 return true;
+			case R.id.entry:
+                createEntry();
+                return true;
             case R.id.quit:
                 exitRequested();
                 return true;
@@ -70,14 +83,62 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onBackPressed();
     }
 
+	 private void createEntry() {
+        DateFormat df = new SimpleDateFormat("MM dd, yyyy");
+        DateFormat tf = new SimpleDateFormat("HH:mm");
+        String date = df.format(Calendar.getInstance().getTime());
+        String time = tf.format(Calendar.getInstance().getTime());
+
+        /* Launch FeelingEntryActivty activity here */
+         Intent getMood = new Intent(this, FeelingEntryActivity.class);
+         startActivityForResult(getMood, FEELING_ENTRY_CODE);
+         /* class variable mood should be now be set in OnActivityResult */
+
+
+        HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
+        if (mEntries == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, mood));
+            HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
+            entryHash.put(date,entryArrayList);
+            mJournal.setEntries(entryHash);
+        } else if (mEntries.get(date) == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, mood));
+            mEntries.put(date,entryArrayList);
+        } else {
+            mEntries.get(date).add(new EntryClass(date,time,mood));
+        }
+    }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == FEELING_ENTRY_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                mood = data.getExtras().getString("MOOD");
+            }
+        }
+    }
+	
+    //SET UP THE ON CLICKS HERE
+    // 0 = profile,
+    // 1 = Settings
+    @Override
     public void onNavigationDrawerItemSelected(int position) {
+        Log.i(TAG,"the position is " + position);
         // update the main content by replacing fragments
+        if(position ==2){
+            Intent intent = new Intent(this, Summary.class);
+            startActivity(intent);
+        }
+        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+                */
     }
 
     public void onSectionAttached(int number) {

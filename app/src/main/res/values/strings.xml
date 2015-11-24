@@ -4,6 +4,7 @@
     <string name="quit_string">Quit</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="open_entry">Create New Entry</string>
 
     <string name="mood_happy">Happy</string>
     <string name="mood_excited">Excited</string>
@@ -21,5 +22,22 @@
     <string name="title_section3">Status</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_feeling_entry">FeelingEntryActivity</string>
+
+
+
+
+    <string name="diagnosis_happy">Keep up the positive attitude! Always keep on smiling and doing great! </string>
+    <string name="diagnosis_excited">Excited</string>
+    <string name="diagnosis_bored">Try joining an extra corricular, read a book, cook some food, or get some exercise!</string>
+    <string name="diagnosis_surprised">Surprised</string>
+    <string name="diagnosis_calm">Calm</string>
+    <string name="diagnosis_disappointed">Disappointed</string>
+    <string name="diagnosis_sad">Sad</string>
+    <string name="diagnosis_scared">Scared</string>
+    <string name="diagnosis_angry">Try to relax, and calm your anger.</string>
+
+
+
 
 </resources>

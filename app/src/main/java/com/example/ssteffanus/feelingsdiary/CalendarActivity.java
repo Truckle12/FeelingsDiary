@@ -7,6 +7,9 @@ import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by ssteffanus on 11/6/2015.
  */
@@ -22,8 +25,17 @@ public class CalendarActivity extends Activity{
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                Toast.makeText(getApplicationContext(), "" + dayOfMonth, Toast.LENGTH_SHORT).show();// TODO Auto-generated method stub
-                /*open activity*/
+                HashMap<String,ArrayList<EntryClass>> entries =  MainActivity.mJournal.getEntries();
+                String dateStr = month+" "+dayOfMonth+" "+year;
+                if (entries == null || entries.get(dateStr) == null) {
+                    Toast.makeText(getApplicationContext(), "No entry exists on this day", Toast.LENGTH_SHORT).show();
+                } else {
+                    Bundle b = new Bundle();
+                    b.putString("dateStr", dateStr);
+                    Intent dIntent = new Intent(CalendarActivity.this, DaySelectActivity.class);
+                    startActivity(dIntent);
+                }
+
             }
         });
     }
