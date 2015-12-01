@@ -38,4 +38,20 @@
         completions."
     </string>
 
+
+
+
+    <string name="diagnosis_happy">Keep up the positive attitude! Always keep on smiling and doing great! </string>
+    <string name="diagnosis_excited">Excited</string>
+    <string name="diagnosis_bored">Try joining an extra corricular, read a book, cook some food, or get some exercise!</string>
+    <string name="diagnosis_surprised">Surprised</string>
+    <string name="diagnosis_calm">Calm</string>
+    <string name="diagnosis_disappointed">Disappointed</string>
+    <string name="diagnosis_sad">Sad</string>
+    <string name="diagnosis_scared">Scared</string>
+    <string name="diagnosis_angry">Try to relax, and calm your anger.</string>
+
+
+
+
 </resources>

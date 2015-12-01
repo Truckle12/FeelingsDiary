@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     public static JournalClass mJournal = new JournalClass();
     static final int FEELING_ENTRY_CODE = 0;
     private String mood;
+    public String TAG ="Testing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,14 +122,23 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
     }
 	
-
+    //SET UP THE ON CLICKS HERE
+    // 0 = profile,
+    // 1 = Settings
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+        Log.i(TAG,"the position is " + position);
         // update the main content by replacing fragments
+        if(position ==2){
+            Intent intent = new Intent(this, Summary.class);
+            startActivity(intent);
+        }
+        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+                */
     }
 
     public void onSectionAttached(int number) {

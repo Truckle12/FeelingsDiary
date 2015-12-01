@@ -21,7 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import android.content.Intent;
 /**
  * Created by ShelbySilverstein on 11/15/15.
  */
@@ -245,6 +245,12 @@ public class NavigationDrawerFragment extends Fragment {
         if (item.getItemId() == R.id.action_example) {
             Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
+        }
+        if(item.getItemId() == R.id.status){
+           // Intent intent = new Intent(this, Summary.class);
+
+
+
         }
 
         return super.onOptionsItemSelected(item);
