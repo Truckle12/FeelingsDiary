@@ -24,15 +24,25 @@
             android:name=".FeelingEntryActivity"
             android:label="@string/title_activity_feeling_entry" >
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
-                <data android:mimeType="image/*"/>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Summary"
             android:label="SummaryActivity" >
+        </activity>
+        <activity
+            android:name=".TextEntryActivity"
+            android:label="@string/title_activity_text_entry"
+            android:parentActivityName=".FeelingEntryActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ssteffanus.feelingsdiary.FeelingEntryActivity" />
         </activity>
     </application>
 

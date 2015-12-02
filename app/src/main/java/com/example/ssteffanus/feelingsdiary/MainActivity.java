@@ -31,15 +31,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private CharSequence mTitle;
     public static JournalClass mJournal = new JournalClass();
     static final int FEELING_ENTRY_CODE = 0;
-    private String mood;
+    private String EntryMood;
+    private StringBuffer EntryText;
     public String TAG ="Testing";
+    Boolean firstOpen= true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         defaultImage = BitmapFactory.decodeResource(getResources(),R.drawable.default_image);
-
+        //firstOpen = true;
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -50,15 +52,15 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
+    }*/
+ /*
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    } */
     private void openCalendar() {
         Intent calendarIntent = new Intent(this, CalendarActivity.class);
         startActivity(calendarIntent);
@@ -98,16 +100,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
         if (mEntries == null) {
             ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, mood));
+            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
             HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
             entryHash.put(date,entryArrayList);
             mJournal.setEntries(entryHash);
         } else if (mEntries.get(date) == null) {
             ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, mood));
+            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
             mEntries.put(date,entryArrayList);
         } else {
-            mEntries.get(date).add(new EntryClass(date,time,mood));
+            mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
         }
     }
 
@@ -117,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         if (requestCode == FEELING_ENTRY_CODE) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                mood = data.getExtras().getString("MOOD");
+                EntryMood = data.getExtras().getString("MOOD");
+                EntryText = new StringBuffer(data.getExtras().getString("TEXT"));
             }
         }
     }
@@ -129,7 +132,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     public void onNavigationDrawerItemSelected(int position) {
         Log.i(TAG,"the position is " + position);
         // update the main content by replacing fragments
-        if(position ==2){
+        if(firstOpen){ // When app runs the position will always be 0- need to fix this problem
+            firstOpen = false;
+        }else if(position == 0){ // open entry
+            createEntry();
+        }else if (position == 1){ // open Calender
+            openCalendar();
+        }else if(position ==2){ // Profile
+
+        }else if(position == 3){ // Settings
+
+        }else if (position == 4){ // status
             Intent intent = new Intent(this, Summary.class);
             startActivity(intent);
         }
@@ -144,17 +157,25 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle= getString(R.string.open_entry);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle= getString(R.string.open_calendar);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_section3); //status
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section2); //settings
+                break;
+            case 5:
+                mTitle =  getString(R.string.title_section1); //profile
                 break;
         }
     }
 
+
+ /*
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -167,13 +188,13 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_SECTION_NUMBER = "section_number";
+  /*      private static final String ARG_SECTION_NUMBER = "section_number";
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+   /*     public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -197,6 +218,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
-    }
+    } */
 
 }
