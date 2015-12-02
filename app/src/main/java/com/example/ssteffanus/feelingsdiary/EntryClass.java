@@ -16,11 +16,11 @@
             this.entry = null;
         }
 
-        public EntryClass (String date, String time, String mood) {
+        public EntryClass (String date, String time, String mood, StringBuffer text) {
             this.date = date;
             this.time = time;
             this.mood = mood;
-            this.entry = null;
+            this.entry = text;
         }
 
         public String getEntryDate() {

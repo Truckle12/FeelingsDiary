@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private CharSequence mTitle;
     public static JournalClass mJournal = new JournalClass();
     static final int FEELING_ENTRY_CODE = 0;
-    private String mood;
+    private String EntryMood;
+    private StringBuffer EntryText;
     public String TAG ="Testing";
     Boolean firstOpen= true;
 
@@ -99,16 +100,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
         if (mEntries == null) {
             ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, mood));
+            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
             HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
             entryHash.put(date,entryArrayList);
             mJournal.setEntries(entryHash);
         } else if (mEntries.get(date) == null) {
             ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, mood));
+            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
             mEntries.put(date,entryArrayList);
         } else {
-            mEntries.get(date).add(new EntryClass(date,time,mood));
+            mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
         }
     }
 
@@ -118,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         if (requestCode == FEELING_ENTRY_CODE) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                mood = data.getExtras().getString("MOOD");
+                EntryMood = data.getExtras().getString("MOOD");
+                EntryText = new StringBuffer(data.getExtras().getString("TEXT"));
             }
         }
     }

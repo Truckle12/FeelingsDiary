@@ -13,6 +13,8 @@ import android.app.Activity;
 public class FeelingEntryActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton IB_happy, IB_excited, IB_bored, IB_surprised, IB_calm, IB_disappointed, IB_sad, IB_scared, IB_angry;
+    static final int TEXT_ENTRY_CODE = 1;
+    String text = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,40 +45,64 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
 
     public void onClick(View v) {
         String mood = "";
+
         switch(v.getId()){
             case R.id.imageButton_happy:
-                mood = "happy";
+                mood = "Happy";
                 break;
             case R.id.imageButton_excited:
-                mood = "excited";
+                mood = "Excited";
                 break;
             case R.id.imageButton_bored:
-                mood = "bored";
+                mood = "Bored";
                 break;
             case R.id.imageButton_surprised:
-                mood = "surprised";
+                mood = "Surprised";
                 break;
             case R.id.imageButton_calm:
-                mood = "calm";
+                mood = "Calm";
                 break;
             case R.id.imageButton_disappointed:
-                mood = "disappointed";
+                mood = "Disappointed";
                 break;
             case R.id.imageButton_sad:
-                mood = "sad";
+                mood = "Sad";
                 break;
             case R.id.imageButton_scared:
-                mood = "scared";
+                mood = "Scared";
                 break;
             case R.id.imageButton_angry:
-                mood = "angry";
+                mood = "Angry";
                 break;
         }
 
+        /* sets class variable for entry's text */
+        getEntryText(mood);
+
+        /* pass mood and text back to main */
         Intent result = new Intent(FeelingEntryActivity.this, MainActivity.class);
         result.putExtra("MOOD", mood);
+        result.putExtra("TEXT", text);
         setResult(Activity.RESULT_OK, result);
         finish();
+    }
+
+    private void getEntryText(String mood){
+
+        Intent textIntent = new Intent(FeelingEntryActivity.this, TextEntryActivity.class);
+        textIntent.putExtra("MOOD", mood);
+        startActivityForResult(textIntent, TEXT_ENTRY_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == TEXT_ENTRY_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                text = data.getExtras().getString("TEXT");
+            }
+        }
     }
 
     @Override
