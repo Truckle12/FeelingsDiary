@@ -3,12 +3,14 @@ package com.example.ssteffanus.feelingsdiary;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -31,6 +33,15 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showTimePickerDialog();
+            }
+        });
+
+       final Button UpdateCredentialsButton = (Button) findViewById(R.id.credentials_button);
+       UpdateCredentialsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startRegisterPage();
             }
         });
     }
@@ -94,5 +105,10 @@ public class SettingsActivity extends AppCompatActivity {
     private void showTimePickerDialog() {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
+    }
+
+    private void startRegisterPage() {
+        Intent intent_register = new Intent(this, RegisterActivity.class);
+        startActivity(intent_register);
     }
 }
