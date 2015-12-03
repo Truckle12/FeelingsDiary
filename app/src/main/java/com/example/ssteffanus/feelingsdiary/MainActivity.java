@@ -87,10 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
 	 private void createEntry() {
-        DateFormat df = new SimpleDateFormat("MM dd yyyy");
-        DateFormat tf = new SimpleDateFormat("HH:mm");
-        String date = df.format(Calendar.getInstance().getTime());
-        String time = tf.format(Calendar.getInstance().getTime());
+
 
         /* Launch FeelingEntryActivty activity here */
          Intent getMood = new Intent(this, FeelingEntryActivity.class);
@@ -98,20 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
          /* class variable mood should be now be set in OnActivityResult */
 
 
-        HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
-        if (mEntries == null) {
-            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
-            HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
-            entryHash.put(date,entryArrayList);
-            mJournal.setEntries(entryHash);
-        } else if (mEntries.get(date) == null) {
-            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
-            mEntries.put(date,entryArrayList);
-        } else {
-            mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
-        }
     }
     @Override
     protected  void onStart(){
@@ -121,6 +104,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             startActivity(intent_login);
         }
     }
+
+
+
+
     private boolean authenticate() {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
         String username = preferences.getString("username", "defaultvalue");
@@ -143,10 +130,37 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             if (resultCode == RESULT_OK) {
                 EntryMood = data.getExtras().getString("MOOD");
                 EntryText = new StringBuffer(data.getExtras().getString("TEXT"));
+                setUpmEntries(EntryMood);
             }
         }
     }
-	
+
+    public void setUpmEntries(String EntryMoods){
+        DateFormat df = new SimpleDateFormat("MM dd, yyyy");
+        DateFormat tf = new SimpleDateFormat("HH:mm");
+        String date = df.format(Calendar.getInstance().getTime());
+        String time = tf.format(Calendar.getInstance().getTime());
+
+        HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
+        if (mEntries == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, EntryMoods, EntryText));
+            Log.i(TAG,"ADDING TO ARRAYLIST -> the mood is :"+ EntryMoods);
+            HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
+            entryHash.put(date,entryArrayList);
+            mJournal.setEntries(entryHash);
+        } else if (mEntries.get(date) == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, EntryMoods, EntryText));
+            mEntries.put(date,entryArrayList);
+        } else {
+
+            mEntries.get(date).add(new EntryClass(date,time,EntryMoods, EntryText));
+
+            mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
+        }
+    }
+
     //SET UP THE ON CLICKS HERE
     // 0 = profile,
     // 1 = Settings
@@ -166,7 +180,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
         }else if (position == 4){ // status
+            HashMap<String,ArrayList<EntryClass>> moods = mJournal.getEntries();
+            String emotion = findEmotion(moods);
             Intent intent = new Intent(this, Summary.class);
+            Log.i(TAG,"setting up Intent in MainActivity  and the emotion is " +emotion);
+            intent.putExtra("mood",emotion);
             startActivity(intent);
         }else if( position == 5 ){  //LOGIN
             SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
@@ -179,6 +197,51 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         }
 
+    }
+
+    public String findEmotion(HashMap<String, ArrayList<EntryClass>> mood){
+        HashMap<String,Integer> finish = new HashMap<String, Integer>();
+        int maxEntry = 0;
+        String maxString = null;
+        Integer integer =0;
+        int conv =0;
+        for(String s: mood.keySet()){
+            Log.i(TAG, "the key is " +s);
+            if(s != null) {
+                ArrayList<EntryClass> arr = mood.get(s);
+                for (int j = 0; j < arr.size(); j++) {
+                    Log.i(TAG, "the entry is " + arr.get(j));
+                    String moodEntry = arr.get(j).getEntryMood();
+                    if(moodEntry != null) {
+                        Log.i(TAG, "the string is " + moodEntry);
+                        if (!finish.containsKey(moodEntry)) {
+                            finish.put(moodEntry, 1);
+                        } else { //increment the count
+                            Log.i(TAG, "the integer is " + finish.get(moodEntry));
+                            integer = finish.get(moodEntry);
+                            //conv = integer.intValue();
+                            //conv = conv + 1;
+                            integer = integer +1;
+                            finish.put(moodEntry, integer);
+                        }
+                    }
+                }
+            }
+        }
+
+        for(String s: finish.keySet()){
+            Log.i(TAG,"s in finish hash is :"+s);
+            Log.i(TAG,"count in finish hash is :"+finish.get(s));
+            if (finish.get(s).intValue() > maxEntry){
+                Log.i(TAG, "YESSS!");
+                maxEntry= finish.get(s);
+                maxString = s;
+                Log.i(TAG,"maxString is "+maxString);
+
+            }
+        }
+        Log.i(TAG,"returning maxString "+maxString);
+        return maxString;
     }
 
     public void onSectionAttached(int number) {
