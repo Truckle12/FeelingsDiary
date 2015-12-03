@@ -2,6 +2,7 @@ package com.example.ssteffanus.feelingsdiary;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.Fragment;
@@ -114,6 +115,28 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     @Override
+    protected  void onStart(){
+        super.onStart();
+        if(authenticate() != true){
+            Intent intent_login = new Intent(this, LoginActivity.class);
+            startActivity(intent_login);
+        }
+    }
+    private boolean authenticate() {
+        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
+        String username = preferences.getString("username", "defaultvalue");
+        String password = preferences.getString("password", "defaultvalue");
+        String loggedin = preferences.getString("loggedin", "defaultvalue");
+        if (username.toString().equals("defaultvalue")) {
+            Intent intent_register = new Intent(this, RegisterActivity.class);
+            startActivity(intent_register);
+            return false;
+        }else if(loggedin.toString().equals("false")){
+            return false;
+        }
+        return true;
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
         if (requestCode == FEELING_ENTRY_CODE) {
@@ -147,6 +170,13 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             Intent intent = new Intent(this, Summary.class);
             startActivity(intent);
         }else if( position == 5 ){  //LOGIN
+            SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
+            SharedPreferences.Editor prefEditor = preferences.edit();
+            prefEditor.putString("loggedin", "true");
+            prefEditor.commit();
+            Intent intent_login = new Intent(this, LoginActivity.class);
+            startActivity(intent_login);
+
 
         }
 
