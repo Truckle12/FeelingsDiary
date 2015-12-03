@@ -29,6 +29,10 @@
             android:label="EntrySelectActivity" >
         </activity>
         <activity
+            android:name=".SettingsActivity"
+            android:label="SettingsActivity" >
+        </activity>
+        <activity
             android:name=".FeelingEntryActivity"
             android:label="@string/title_activity_feeling_entry" >
             <intent-filter>
@@ -59,6 +63,10 @@
             android:name=".RegisterActivity"
             android:label="RegisterActivity" android:noHistory="true" android:excludeFromRecents="true">
         </activity>
+        <receiver
+            android:name="com.example.ssteffanus.feelingsdiary.NotificationService"
+            android:enabled="true">
+        </receiver>
     </application>
 
 </manifest>
