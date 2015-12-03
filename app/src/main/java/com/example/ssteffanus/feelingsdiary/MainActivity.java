@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
         }
     }
-
     @Override
     protected  void onStart(){
         super.onStart();

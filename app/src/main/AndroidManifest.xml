@@ -16,13 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="LoginActivity" android:label="@string/app_name"
-            android:noHistory="true" android:excludeFromRecents="true">
-        </activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:label="RegisterActivity" android:noHistory="true" android:excludeFromRecents="true">
-        </activity>
         <activity
             android:name=".CalendarActivity"
             android:label="CalendarActivity" >
@@ -51,13 +44,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ssteffanus.feelingsdiary.FeelingEntryActivity" />
         </activity>
+        <activity android:name=".LoginActivity" android:label="LoginActivity"
+            android:noHistory="true" android:excludeFromRecents="true">
+        </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ssteffanus.feelingsdiary.MainActivity" />
+            android:name=".RegisterActivity"
+            android:label="RegisterActivity" android:noHistory="true" android:excludeFromRecents="true">
         </activity>
     </application>
 

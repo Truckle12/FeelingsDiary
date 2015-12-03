@@ -4,6 +4,7 @@
     <string name="quit_string">Quit</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
     <string name="open_entry">Create New Entry</string>
 
     <string name="mood_happy">Happy</string>
