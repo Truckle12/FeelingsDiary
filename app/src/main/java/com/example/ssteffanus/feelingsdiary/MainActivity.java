@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
 	 private void createEntry() {
-        DateFormat df = new SimpleDateFormat("MM dd, yyyy");
+        DateFormat df = new SimpleDateFormat("MM dd yyyy");
         DateFormat tf = new SimpleDateFormat("HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
         String time = tf.format(Calendar.getInstance().getTime());
