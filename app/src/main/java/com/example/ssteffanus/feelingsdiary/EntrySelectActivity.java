@@ -23,8 +23,8 @@ public class EntrySelectActivity extends Activity {
 
             Bundle b = getIntent().getExtras();
 
-            String date = b.getString("date");
-            String time = b.getString("time");
+            String date = b.getString("dateStr");
+            String time = b.getString("timeStr");
             EntryClass mEntry = null;
 
             ArrayList<EntryClass> mEntries = MainActivity.mJournal.getEntries().get(date);

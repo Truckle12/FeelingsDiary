@@ -26,13 +26,23 @@ public class CalendarActivity extends Activity{
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
                 HashMap<String,ArrayList<EntryClass>> entries =  MainActivity.mJournal.getEntries();
-                String dateStr = month+" "+dayOfMonth+" "+year;
+
+                Toast.makeText(getApplicationContext(), "month: "+(month+1), Toast.LENGTH_SHORT).show();
+                String dateStr;
+
+                if (dayOfMonth < 10) {
+                    dateStr = (month+1)+" 0"+dayOfMonth+" "+year;
+                } else {
+                    dateStr = (month+1) + " " + dayOfMonth + " " + year;
+                }
+
                 if (entries == null || entries.get(dateStr) == null) {
                     Toast.makeText(getApplicationContext(), "No entry exists on this day", Toast.LENGTH_SHORT).show();
                 } else {
                     Bundle b = new Bundle();
                     b.putString("dateStr", dateStr);
                     Intent dIntent = new Intent(CalendarActivity.this, DaySelectActivity.class);
+                    dIntent.putExtras(b);
                     startActivity(dIntent);
                 }
 

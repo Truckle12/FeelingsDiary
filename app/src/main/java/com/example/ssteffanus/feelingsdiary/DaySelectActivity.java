@@ -72,8 +72,8 @@ public class DaySelectActivity extends Activity implements View.OnClickListener{
         Intent intent = new Intent(DaySelectActivity.this, EntrySelectActivity.class);
         Bundle b = new Bundle();
         b.putString("dateStr",dateStr);
-        b.putString("timeStr", time); //Your id
-        intent.putExtras(b); //Put your id to your next Intent
+        b.putString("timeStr", time);
+        intent.putExtras(b);
         startActivity(intent);
         finish();
     }
