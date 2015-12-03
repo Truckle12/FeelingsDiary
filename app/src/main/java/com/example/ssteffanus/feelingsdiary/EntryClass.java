@@ -9,12 +9,6 @@
         private String mood;
         private StringBuffer entry;
 
-        public EntryClass () {
-            this.date = null;
-            this.time = null;
-            this.mood = null;
-            this.entry = null;
-        }
 
         public EntryClass (String date, String time, String mood, StringBuffer text) {
             this.date = date;

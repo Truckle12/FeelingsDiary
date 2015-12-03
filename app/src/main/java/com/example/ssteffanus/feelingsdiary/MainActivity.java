@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     static final int FEELING_ENTRY_CODE = 0;
     private String EntryMood; //most recently selected mood
     private StringBuffer EntryText; //most recently entered text entry
+
+    private String date, time;
     public String TAG ="Testing";
     Boolean firstOpen= true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,16 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onBackPressed();
     }
 
-	 private void createEntry() {
 
-
-        /* Launch FeelingEntryActivty activity here */
-         Intent getMood = new Intent(this, FeelingEntryActivity.class);
-         startActivityForResult(getMood, FEELING_ENTRY_CODE);
-         /* class variable mood should be now be set in OnActivityResult */
-
-
-    }
     @Override
     protected  void onStart(){
         super.onStart();
@@ -122,6 +116,29 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
         return true;
     }
+
+
+    private void finishEntry() {
+        Log.e(TAG, "mood value: "+EntryMood);
+        Log.e(TAG, "text value: "+EntryText);
+
+        HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
+        if (mEntries == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
+            HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
+            entryHash.put(date,entryArrayList);
+            mJournal.setEntries(entryHash);
+        } else if (mEntries.get(date) == null) {
+            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
+            entryArrayList.add(new EntryClass(date, time, EntryMood, EntryText));
+            mEntries.put(date,entryArrayList);
+        } else {
+            mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
+        }
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -130,36 +147,24 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             if (resultCode == RESULT_OK) {
                 EntryMood = data.getExtras().getString("MOOD");
                 EntryText = new StringBuffer(data.getExtras().getString("TEXT"));
-                setUpmEntries(EntryMood);
+                finishEntry();
             }
         }
     }
 
-    public void setUpmEntries(String EntryMoods){
-        DateFormat df = new SimpleDateFormat("MM dd, yyyy");
+    private void createEntry() {
+        DateFormat df = new SimpleDateFormat("MM dd yyyy");
         DateFormat tf = new SimpleDateFormat("HH:mm");
-        String date = df.format(Calendar.getInstance().getTime());
-        String time = tf.format(Calendar.getInstance().getTime());
+        date = df.format(Calendar.getInstance().getTime());
+        time = tf.format(Calendar.getInstance().getTime());
 
-        HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
-        if (mEntries == null) {
-            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, EntryMoods, EntryText));
-            Log.i(TAG,"ADDING TO ARRAYLIST -> the mood is :"+ EntryMoods);
-            HashMap<String,ArrayList<EntryClass>> entryHash = new HashMap<String,ArrayList<EntryClass>>();
-            entryHash.put(date,entryArrayList);
-            mJournal.setEntries(entryHash);
-        } else if (mEntries.get(date) == null) {
-            ArrayList<EntryClass> entryArrayList = new ArrayList<EntryClass>();
-            entryArrayList.add(new EntryClass(date, time, EntryMoods, EntryText));
-            mEntries.put(date,entryArrayList);
-        } else {
+        /* Launch FeelingEntryActivty activity here */
+        Intent getMood = new Intent(this, FeelingEntryActivity.class);
+        startActivityForResult(getMood, FEELING_ENTRY_CODE);
+         /* class variable mood should be now be set in OnActivityResult */
 
-            mEntries.get(date).add(new EntryClass(date,time,EntryMoods, EntryText));
-
-            mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
-        }
     }
+
 
     //SET UP THE ON CLICKS HERE
     // 0 = profile,

@@ -3,6 +3,7 @@ package com.example.ssteffanus.feelingsdiary;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
@@ -14,6 +15,7 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
 
     ImageButton IB_happy, IB_excited, IB_bored, IB_surprised, IB_calm, IB_disappointed, IB_sad, IB_scared, IB_angry;
     static final int TEXT_ENTRY_CODE = 1;
+    public String TAG2 ="FeelingsEntry";
     String text = "";
 
     @Override
@@ -77,22 +79,15 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
         }
 
         /* sets class variable for entry's text */
-        getEntryText(mood);
-
-        /* pass mood and text back to main */
-        Intent result = new Intent(FeelingEntryActivity.this, MainActivity.class);
-        result.putExtra("MOOD", mood);
-        result.putExtra("TEXT", text);
-        setResult(Activity.RESULT_OK, result);
-        finish();
-    }
-
-    private void getEntryText(String mood){
 
         Intent textIntent = new Intent(FeelingEntryActivity.this, TextEntryActivity.class);
         textIntent.putExtra("MOOD", mood);
         startActivityForResult(textIntent, TEXT_ENTRY_CODE);
+
+
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -101,6 +96,16 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 text = data.getExtras().getString("TEXT");
+
+                /* pass mood and text back to main */
+                Log.e(TAG2, "returning to main; hopefully all vals are set");
+                Intent result = new Intent(FeelingEntryActivity.this, MainActivity.class);
+                String mood = data.getStringExtra("MOOD");
+                result.putExtra("MOOD", mood);
+                result.putExtra("TEXT", text);
+                setResult(Activity.RESULT_OK, result);
+                finish();
+
             }
         }
     }

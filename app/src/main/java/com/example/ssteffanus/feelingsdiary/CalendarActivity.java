@@ -27,7 +27,6 @@ public class CalendarActivity extends Activity{
                                             int dayOfMonth) {
                 HashMap<String,ArrayList<EntryClass>> entries =  MainActivity.mJournal.getEntries();
 
-                Toast.makeText(getApplicationContext(), "month: "+(month+1), Toast.LENGTH_SHORT).show();
                 String dateStr;
 
                 if (dayOfMonth < 10) {

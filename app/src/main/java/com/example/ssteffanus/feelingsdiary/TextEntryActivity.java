@@ -16,6 +16,7 @@ public class TextEntryActivity extends AppCompatActivity {
     TextView title;
     EditText text;
     Button clear, submit;
+    String mood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class TextEntryActivity extends AppCompatActivity {
         clear = (Button)findViewById(R.id.buttonClear);
         submit = (Button)findViewById(R.id.buttonSubmit);
 
-        String mood = getIntent().getExtras().getString("MOOD");
+        mood = getIntent().getExtras().getString("MOOD");
         title.setText("Why Are You Feeling "+mood+"?");
 
         clear.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +43,7 @@ public class TextEntryActivity extends AppCompatActivity {
                 /* pass text back to FeelingEntryActivity */
                 Intent result = new Intent(TextEntryActivity.this, FeelingEntryActivity.class);
                 result.putExtra("TEXT", text.getText().toString());
+                result.putExtra("MOOD", mood);
                 setResult(Activity.RESULT_OK, result);
                 finish();
             }
