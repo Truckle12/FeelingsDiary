@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private CharSequence mTitle;
     public static JournalClass mJournal = new JournalClass();
     static final int FEELING_ENTRY_CODE = 0;
-    private String EntryMood;
-    private StringBuffer EntryText;
+    private String EntryMood; //most recently selected mood
+    private StringBuffer EntryText; //most recently entered text entry
     public String TAG ="Testing";
     Boolean firstOpen= true;
 
@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }else if(position ==2){ // Profile
 
         }else if(position == 3){ // Settings
-
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
         }else if (position == 4){ // status
             Intent intent = new Intent(this, Summary.class);
             startActivity(intent);

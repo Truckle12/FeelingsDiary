@@ -37,6 +37,7 @@
     <string name="diagnosis_scared">Scared</string>
     <string name="diagnosis_angry">Try to relax, and calm your anger.</string>
     <string name="title_activity_text_entry">TextEntryActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 
 
