@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         if (username.toString().equals("defaultvalue")) {
             Intent intent_register = new Intent(this, RegisterActivity.class);
             startActivity(intent_register);
-            return false;
+            return true;
         }else if(loggedin.toString().equals("false")){
             return false;
         }
