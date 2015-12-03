@@ -3,8 +3,12 @@ package com.example.ssteffanus.feelingsdiary;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+<<<<<<< HEAD
 import android.app.NotificationManager;
 import android.os.SystemClock;
+=======
+import android.content.Intent;
+>>>>>>> 50b3a9f6a77b7759def63c37104bf52dea4da4aa
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.content.Intent;
@@ -48,6 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         // send repeating notification to notificationservice
         final Button setButton = (Button) findViewById(R.id.set_button);
         setButton.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +62,14 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 updateNotificationTime();
                 Toast.makeText(getApplicationContext(), "Daily Alarm Updated to "+hour+":"+min, Toast.LENGTH_SHORT).show();
+=======
+       final Button UpdateCredentialsButton = (Button) findViewById(R.id.credentials_button);
+       UpdateCredentialsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startRegisterPage();
+>>>>>>> 50b3a9f6a77b7759def63c37104bf52dea4da4aa
             }
         });
     }
@@ -138,5 +152,10 @@ public class SettingsActivity extends AppCompatActivity {
     private void showTimePickerDialog() {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
+    }
+
+    private void startRegisterPage() {
+        Intent intent_register = new Intent(this, RegisterActivity.class);
+        startActivity(intent_register);
     }
 }

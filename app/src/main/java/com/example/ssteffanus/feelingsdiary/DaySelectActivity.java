@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.LinearGradient;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.w3c.dom.Text;
@@ -23,9 +25,10 @@ import java.util.ArrayList;
  * Created by ssteffanus on 11/15/2015.
  */
 
-public class DaySelectActivity extends Activity implements View.OnClickListener{
+public class DaySelectActivity extends Activity{
 
     public String dateStr;
+    public String TAG ="Testing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,42 +43,56 @@ public class DaySelectActivity extends Activity implements View.OnClickListener{
         if (mEntries != null) {
             int numEntries = mEntries.size();
             LinearLayout mLayout = (LinearLayout) findViewById(R.id.daySelectLinearLayout);
-            RelativeLayout[] mRLayouts = new RelativeLayout[numEntries];
 
+            RelativeLayout[] mRLayoutsOuter = new RelativeLayout[numEntries];
+            RelativeLayout[] mRLayoutsInner = new RelativeLayout[numEntries];
+
+            ImageView[] mImageViews = new ImageView[numEntries];
+            Button[] mButtons = new Button[numEntries];
+
+            RelativeLayout.LayoutParams mParamsOuter = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            RelativeLayout.LayoutParams mParamsImage = new RelativeLayout.LayoutParams(320,170);
+            RelativeLayout.LayoutParams mParamsButton = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            RelativeLayout.LayoutParams[] mParamsInner = new RelativeLayout.LayoutParams[numEntries];
 
             for (int i=0; i<numEntries; i++) {
                 EntryClass e = mEntries.get(i);
+                mRLayoutsOuter[i]  = new RelativeLayout(this);
+                mRLayoutsInner[i] = new RelativeLayout(this);
 
                 /* case e.getMoodString() { ....} */
-                RelativeLayout.LayoutParams mParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                mParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 
-                ImageView mImage = new ImageView(getApplicationContext());
-                mImage.setImageBitmap(MainActivity.defaultImage);
-                Button mButton = new Button(getApplicationContext());
-                mButton.setText(e.getEntryTime());
+                mImageViews[i] = new ImageView(getApplicationContext());
+                mImageViews[i].setImageBitmap(MainActivity.defaultImage);
 
-                mRLayouts[i].addView(mImage, mParams);
-                mParams.addRule(RelativeLayout.RIGHT_OF, mImage.getId());
-                mRLayouts[i].addView(mButton, mParams);
+                mParamsInner[i] = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mParamsInner[i].addRule(RelativeLayout.RIGHT_OF, mImageViews[i].getId());
 
-                mLayout.addView(mRLayouts[i]);
+                mButtons[i] = new Button(getApplicationContext());
+                mButtons[i].setText(e.getEntryTime());
+                mButtons[i].setOnClickListener(myButtonListener);
+
+                mRLayoutsInner[i].addView(mButtons[i], mParamsButton);
+                mRLayoutsOuter[i].addView(mImageViews[i], mParamsImage);
+                mRLayoutsOuter[i].addView(mRLayoutsInner[i], mParamsInner[i]);
+                mLayout.addView(mRLayoutsOuter[i], mParamsOuter);
 
             }
         }
     }
-
-    public void onClick(View v) {
-        Button button = (Button) v;
-        String time = button.getText().toString();
-        Intent intent = new Intent(DaySelectActivity.this, EntrySelectActivity.class);
-        Bundle b = new Bundle();
-        b.putString("dateStr",dateStr);
-        b.putString("timeStr", time);
-        intent.putExtras(b);
-        startActivity(intent);
-        finish();
-    }
+    View.OnClickListener myButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Button button = (Button) v;
+            String time = button.getText().toString();
+            Intent intent = new Intent(DaySelectActivity.this, EntrySelectActivity.class);
+            Bundle b = new Bundle();
+            b.putString("dateStr", dateStr);
+            b.putString("timeStr", time);
+            intent.putExtras(b);
+            startActivity(intent);
+            finish();
+        }
+    };
 }
 

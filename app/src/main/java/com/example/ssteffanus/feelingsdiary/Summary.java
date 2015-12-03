@@ -2,6 +2,7 @@ package com.example.ssteffanus.feelingsdiary;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -12,6 +13,9 @@ public class Summary  extends Activity {
     TextView title;
     TextView editText;
     TextView diagnosisText;
+    Bundle getInt;
+    String emotion;
+    String TAG ="Summary.java";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +25,11 @@ public class Summary  extends Activity {
         editText = (TextView) findViewById(R.id.editText_summ);
         diagnosisText = (TextView) findViewById(R.id.diagnosis_summ);
 
-        String emotion = "Happy";
+
+        getInt= getIntent().getExtras();
+        emotion = (String) getInt.getString("mood");
+        Log.i(TAG, "got the intent in Summary- This is the EMOTION : " + emotion);
+
         //Display the emotion on the screen
         switch(emotion){
             case "Happy":

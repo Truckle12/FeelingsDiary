@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     static final int FEELING_ENTRY_CODE = 0;
     private String EntryMood; //most recently selected mood
     private StringBuffer EntryText; //most recently entered text entry
+
+    private String date, time;
     public String TAG ="Testing";
     Boolean firstOpen= true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,17 +89,38 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onBackPressed();
     }
 
-	 private void createEntry() {
-        DateFormat df = new SimpleDateFormat("MM dd yyyy");
-        DateFormat tf = new SimpleDateFormat("HH:mm");
-        String date = df.format(Calendar.getInstance().getTime());
-        String time = tf.format(Calendar.getInstance().getTime());
 
-        /* Launch FeelingEntryActivty activity here */
-         Intent getMood = new Intent(this, FeelingEntryActivity.class);
-         startActivityForResult(getMood, FEELING_ENTRY_CODE);
-         /* class variable mood should be now be set in OnActivityResult */
+    @Override
+    protected  void onStart(){
+        super.onStart();
+        if(authenticate() != true){
+            Intent intent_login = new Intent(this, LoginActivity.class);
+            startActivity(intent_login);
+        }
+    }
 
+
+
+
+    private boolean authenticate() {
+        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
+        String username = preferences.getString("username", "defaultvalue");
+        String password = preferences.getString("password", "defaultvalue");
+        String loggedin = preferences.getString("loggedin", "defaultvalue");
+        if (username.toString().equals("defaultvalue")) {
+            Intent intent_register = new Intent(this, RegisterActivity.class);
+            startActivity(intent_register);
+            return true;
+        }else if(loggedin.toString().equals("false")){
+            return false;
+        }
+        return true;
+    }
+
+
+    private void finishEntry() {
+        Log.e(TAG, "mood value: "+EntryMood);
+        Log.e(TAG, "text value: "+EntryText);
 
         HashMap<String, ArrayList<EntryClass>> mEntries = mJournal.getEntries();
         if (mEntries == null) {
@@ -112,29 +136,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         } else {
             mEntries.get(date).add(new EntryClass(date,time,EntryMood, EntryText));
         }
+
     }
-    @Override
-    protected  void onStart(){
-        super.onStart();
-        if(authenticate() != true){
-            Intent intent_login = new Intent(this, LoginActivity.class);
-            startActivity(intent_login);
-        }
-    }
-    private boolean authenticate() {
-        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
-        String username = preferences.getString("username", "defaultvalue");
-        String password = preferences.getString("password", "defaultvalue");
-        String loggedin = preferences.getString("loggedin", "defaultvalue");
-        if (username.toString().equals("defaultvalue")) {
-            Intent intent_register = new Intent(this, RegisterActivity.class);
-            startActivity(intent_register);
-            return true;
-        }else if(loggedin.toString().equals("false")){
-            return false;
-        }
-        return true;
-    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -143,10 +147,25 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             if (resultCode == RESULT_OK) {
                 EntryMood = data.getExtras().getString("MOOD");
                 EntryText = new StringBuffer(data.getExtras().getString("TEXT"));
+                finishEntry();
             }
         }
     }
-	
+
+    private void createEntry() {
+        DateFormat df = new SimpleDateFormat("MM dd yyyy");
+        DateFormat tf = new SimpleDateFormat("HH:mm");
+        date = df.format(Calendar.getInstance().getTime());
+        time = tf.format(Calendar.getInstance().getTime());
+
+        /* Launch FeelingEntryActivty activity here */
+        Intent getMood = new Intent(this, FeelingEntryActivity.class);
+        startActivityForResult(getMood, FEELING_ENTRY_CODE);
+         /* class variable mood should be now be set in OnActivityResult */
+
+    }
+
+
     //SET UP THE ON CLICKS HERE
     // 0 = profile,
     // 1 = Settings
@@ -166,7 +185,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
         }else if (position == 4){ // status
+            HashMap<String,ArrayList<EntryClass>> moods = mJournal.getEntries();
+            String emotion = findEmotion(moods);
             Intent intent = new Intent(this, Summary.class);
+            Log.i(TAG,"setting up Intent in MainActivity  and the emotion is " +emotion);
+            intent.putExtra("mood",emotion);
             startActivity(intent);
         }else if( position == 5 ){  //LOGIN
             SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
@@ -179,6 +202,51 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         }
 
+    }
+
+    public String findEmotion(HashMap<String, ArrayList<EntryClass>> mood){
+        HashMap<String,Integer> finish = new HashMap<String, Integer>();
+        int maxEntry = 0;
+        String maxString = null;
+        Integer integer =0;
+        int conv =0;
+        for(String s: mood.keySet()){
+            Log.i(TAG, "the key is " +s);
+            if(s != null) {
+                ArrayList<EntryClass> arr = mood.get(s);
+                for (int j = 0; j < arr.size(); j++) {
+                    Log.i(TAG, "the entry is " + arr.get(j));
+                    String moodEntry = arr.get(j).getEntryMood();
+                    if(moodEntry != null) {
+                        Log.i(TAG, "the string is " + moodEntry);
+                        if (!finish.containsKey(moodEntry)) {
+                            finish.put(moodEntry, 1);
+                        } else { //increment the count
+                            Log.i(TAG, "the integer is " + finish.get(moodEntry));
+                            integer = finish.get(moodEntry);
+                            //conv = integer.intValue();
+                            //conv = conv + 1;
+                            integer = integer +1;
+                            finish.put(moodEntry, integer);
+                        }
+                    }
+                }
+            }
+        }
+
+        for(String s: finish.keySet()){
+            Log.i(TAG,"s in finish hash is :"+s);
+            Log.i(TAG,"count in finish hash is :"+finish.get(s));
+            if (finish.get(s).intValue() > maxEntry){
+                Log.i(TAG, "YESSS!");
+                maxEntry= finish.get(s);
+                maxString = s;
+                Log.i(TAG,"maxString is "+maxString);
+
+            }
+        }
+        Log.i(TAG,"returning maxString "+maxString);
+        return maxString;
     }
 
     public void onSectionAttached(int number) {
