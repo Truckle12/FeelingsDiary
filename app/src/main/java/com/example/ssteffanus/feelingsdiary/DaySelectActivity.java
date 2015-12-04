@@ -37,46 +37,43 @@ public class DaySelectActivity extends Activity{
         Bundle b = getIntent().getExtras();
         dateStr = b.getString("dateStr");
         TextView mTextView = (TextView) findViewById(R.id.textView2);
-        mTextView.setText(dateStr);
+        mTextView.setText(convertDateToText(dateStr));
 
         ArrayList<EntryClass> mEntries = MainActivity.mJournal.getEntries().get(dateStr);
         if (mEntries != null) {
             int numEntries = mEntries.size();
             LinearLayout mLayout = (LinearLayout) findViewById(R.id.daySelectLinearLayout);
 
-            RelativeLayout[] mRLayoutsOuter = new RelativeLayout[numEntries];
-            RelativeLayout[] mRLayoutsInner = new RelativeLayout[numEntries];
-
+            LinearLayout[] mInnerLayouts = new LinearLayout[numEntries];
             ImageView[] mImageViews = new ImageView[numEntries];
             Button[] mButtons = new Button[numEntries];
 
-            RelativeLayout.LayoutParams mParamsOuter = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            RelativeLayout.LayoutParams mParamsImage = new RelativeLayout.LayoutParams(320,170);
-            RelativeLayout.LayoutParams mParamsButton = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            RelativeLayout.LayoutParams[] mParamsInner = new RelativeLayout.LayoutParams[numEntries];
+            LinearLayout.LayoutParams mParamsInner = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mParamsInner.setMargins(0,0,0,20);
+            LinearLayout.LayoutParams mParamsImage = new LinearLayout.LayoutParams(0,170);
+            LinearLayout.LayoutParams mParamsButton = new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT);
+            mParamsImage.weight = 2;
+            mParamsButton.weight = 1;
 
             for (int i=0; i<numEntries; i++) {
                 EntryClass e = mEntries.get(i);
-                mRLayoutsOuter[i]  = new RelativeLayout(this);
-                mRLayoutsInner[i] = new RelativeLayout(this);
+
+                mInnerLayouts[i] = new LinearLayout(this);
+                mInnerLayouts[i].setOrientation(LinearLayout.HORIZONTAL);
 
                 /* case e.getMoodString() { ....} */
 
                 mImageViews[i] = new ImageView(getApplicationContext());
                 mImageViews[i].setImageBitmap(MainActivity.defaultImage);
 
-                mParamsInner[i] = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                mParamsInner[i].addRule(RelativeLayout.RIGHT_OF, mImageViews[i].getId());
-
+               // Log.e(TAG,"date: "+ convertDateToText(dateStr));
                 mButtons[i] = new Button(getApplicationContext());
                 mButtons[i].setText(e.getEntryTime());
                 mButtons[i].setOnClickListener(myButtonListener);
 
-                mRLayoutsInner[i].addView(mButtons[i], mParamsButton);
-                mRLayoutsOuter[i].addView(mImageViews[i], mParamsImage);
-                mRLayoutsOuter[i].addView(mRLayoutsInner[i], mParamsInner[i]);
-                mLayout.addView(mRLayoutsOuter[i], mParamsOuter);
+                mInnerLayouts[i].addView(mButtons[i], mParamsButton);
+                mInnerLayouts[i].addView(mImageViews[i], mParamsImage);
+                mLayout.addView(mInnerLayouts[i], mParamsInner);
 
             }
         }
@@ -94,5 +91,32 @@ public class DaySelectActivity extends Activity{
             finish();
         }
     };
+
+    public static String convertDateToText(String numDate){
+        String textDate = "";
+        String[] splitStr = numDate.split("\\s+");
+        switch (splitStr[0]){
+            case "1": textDate += "January"; break;
+            case "2": textDate += "February"; break;
+            case "3": textDate += "March"; break;
+            case "4": textDate += "April"; break;
+            case "5": textDate += "May"; break;
+            case "6": textDate += "June"; break;
+            case "7": textDate += "July"; break;
+            case "8": textDate += "August"; break;
+            case "9": textDate += "September"; break;
+            case "10": textDate += "October"; break;
+            case "11": textDate += "November"; break;
+            case "12": textDate += "December"; break;
+        }
+        if (splitStr[1].charAt(0) == '0') {
+            textDate += " " + splitStr[1].charAt(1);
+        } else {
+            textDate += " " + splitStr[1];
+        }
+        textDate += ", " + splitStr[2];
+
+        return textDate;
+    }
 }
 

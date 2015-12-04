@@ -37,7 +37,7 @@ public class EntrySelectActivity extends Activity {
 
                 TextView text = (TextView) findViewById(R.id.textView1);
                 TextView text2 = (TextView) findViewById(R.id.textView2);
-                text.setText(date+" @ "+time);
+                text.setText(DaySelectActivity.convertDateToText(date)+" @ "+time);
                 if (mEntry.getEntryText()==null) {
                     Log.e(TAG, "getEntryText is null");
                 }
