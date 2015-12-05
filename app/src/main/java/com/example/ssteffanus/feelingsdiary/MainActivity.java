@@ -194,11 +194,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             startActivity(settingsIntent);
         }else if (position == 3){ // status
             HashMap<String,ArrayList<EntryClass>> moods = mJournal.getEntries();
-            String emotion = findEmotion(moods);
-            Intent intent = new Intent(this, Summary.class);
-            Log.i(TAG,"setting up Intent in MainActivity  and the emotion is " +emotion);
-            intent.putExtra("mood",emotion);
-            startActivity(intent);
+            if(moods != null) {
+                String emotion = findEmotion(moods);
+                Intent intent = new Intent(this, Summary.class);
+                Log.i(TAG, "setting up Intent in MainActivity  and the emotion is " + emotion);
+                intent.putExtra("mood", emotion);
+                startActivity(intent);
+            }else{
+                Toast.makeText(getApplicationContext(), "No entries exist yet", Toast.LENGTH_SHORT).show();
+            }
+
         }else if( position == 4 ){  //LOGIN
             SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
             SharedPreferences.Editor prefEditor = preferences.edit();
