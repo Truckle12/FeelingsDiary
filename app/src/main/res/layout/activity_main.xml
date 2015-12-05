@@ -15,20 +15,6 @@
             android:background="@drawable/cover"
             android:layout_gravity="right|top" />
 
-        <TextView
-            android:layout_width="172dp"
-            android:layout_height="105dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Feelings Diary"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_marginTop="123dp"
-            android:textSize="40dp"
-            android:textStyle="bold|italic"
-            android:typeface="serif"
-            android:layout_marginLeft="30dp"
-            android:gravity="center" />
-
     </FrameLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
