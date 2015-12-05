@@ -2,6 +2,7 @@ package com.example.ssteffanus.feelingsdiary;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 /**
  * Created by ssteffanus on 11/6/2015.
  */
-public class CalendarActivity extends Activity{
+public class CalendarActivity extends AppCompatActivity {
     CalendarView mCalendar;
 
     @Override
