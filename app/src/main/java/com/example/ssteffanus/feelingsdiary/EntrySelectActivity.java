@@ -22,7 +22,7 @@ public class EntrySelectActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.entry_select_layout);
         ImageView image = (ImageView)findViewById(R.id.imageView);
-        image.setImageBitmap(MainActivity.defaultImage);
+
 
         Bundle b = getIntent().getExtras();
 
@@ -35,12 +35,21 @@ public class EntrySelectActivity extends Activity {
             if (mEntries.get(i).getEntryTime().equals(time)) {
                 mEntry = mEntries.get(i);
 
+                switch (mEntry.getEntryMood()) {
+                    case "Happy": image.setImageBitmap(MainActivity.happyImage); break;
+                    case "Sad" : image.setImageBitmap(MainActivity.sadImage); break;
+                    case "Calm": image.setImageBitmap(MainActivity.calmImage);break;
+                    case "Disappointed": image.setImageBitmap(MainActivity.disappointedImage);break;
+                    case "Scared": image.setImageBitmap(MainActivity.scaredImage);break;
+                    case "Excited": image.setImageBitmap(MainActivity.excitedImage);break;
+                    case "Bored": image.setImageBitmap(MainActivity.boredImage); break;
+                    case "Angry": image.setImageBitmap(MainActivity.angryImage); break;
+                    case "Surprised": image.setImageBitmap(MainActivity.surprisedImage); break;
+                }
+
                 TextView text = (TextView) findViewById(R.id.textView1);
                 TextView text2 = (TextView) findViewById(R.id.textView2);
                 text.setText(DaySelectActivity.convertDateToText(date)+" @ "+time);
-                if (mEntry.getEntryText()==null) {
-                    Log.e(TAG, "getEntryText is null");
-                }
                 text2.setText(mEntry.getEntryText());
 
             }

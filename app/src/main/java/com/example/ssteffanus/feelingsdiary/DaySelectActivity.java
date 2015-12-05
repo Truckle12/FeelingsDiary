@@ -61,10 +61,19 @@ public class DaySelectActivity extends Activity{
                 mInnerLayouts[i] = new LinearLayout(this);
                 mInnerLayouts[i].setOrientation(LinearLayout.HORIZONTAL);
 
-                /* case e.getMoodString() { ....} */
-
                 mImageViews[i] = new ImageView(getApplicationContext());
-                mImageViews[i].setImageBitmap(MainActivity.defaultImage);
+
+                switch (e.getEntryMood()) {
+                    case "Happy": mImageViews[i].setImageBitmap(MainActivity.happyImage); break;
+                    case "Sad" : mImageViews[i].setImageBitmap(MainActivity.sadImage); break;
+                    case "Calm": mImageViews[i].setImageBitmap(MainActivity.calmImage);break;
+                    case "Disappointed": mImageViews[i].setImageBitmap(MainActivity.disappointedImage);break;
+                    case "Scared": mImageViews[i].setImageBitmap(MainActivity.scaredImage);break;
+                    case "Excited": mImageViews[i].setImageBitmap(MainActivity.excitedImage);break;
+                    case "Bored": mImageViews[i].setImageBitmap(MainActivity.boredImage); break;
+                    case "Angry": mImageViews[i].setImageBitmap(MainActivity.angryImage); break;
+                    case "Surprised": mImageViews[i].setImageBitmap(MainActivity.surprisedImage); break;
+                }
 
                // Log.e(TAG,"date: "+ convertDateToText(dateStr));
                 mButtons[i] = new Button(getApplicationContext());
