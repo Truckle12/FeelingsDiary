@@ -25,7 +25,7 @@ public class NotificationService extends BroadcastReceiver{
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.icon)
                         .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                                R.drawable.icon))
+                                R.mipmap.ic_launcher))
                         .setContentTitle("FeelingsDiary")
                         .setContentText("How Are You Feeling?");
 
