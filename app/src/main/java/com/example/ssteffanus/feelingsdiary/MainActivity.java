@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Home");
         defaultImage = BitmapFactory.decodeResource(getResources(),R.drawable.default_image);
         //firstOpen = true;
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -56,31 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }*/
- /*
-   @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.calendar:
-                openCalendar();
-                return true;
-			case R.id.entry:
-                createEntry();
-                return true;
-            case R.id.quit:
-                exitRequested();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    } */
+    
     private void openCalendar() {
         Intent calendarIntent = new Intent(this, CalendarActivity.class);
         startActivity(calendarIntent);
@@ -262,9 +239,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 break;
             case 4:
                 mTitle = getString(R.string.title_section2); //settings
-                break;
-            case 5:
-                mTitle =  getString(R.string.title_section1); //profile
                 break;
             case 6:
                 mTitle ="Log Out";

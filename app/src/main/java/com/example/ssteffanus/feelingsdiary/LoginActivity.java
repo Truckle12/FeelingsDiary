@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().setTitle("Log In");
         // Set up the login form.
         mUsernameView = (AutoCompleteTextView) findViewById(R.id.username_login);
 

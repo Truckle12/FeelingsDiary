@@ -19,7 +19,6 @@ public class CalendarActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_layout);
         final CalendarView calendarView=(CalendarView) findViewById(R.id.calendarView);
-
         calendarView.setOnDateChangeListener(new OnDateChangeListener() {
 
             @Override
