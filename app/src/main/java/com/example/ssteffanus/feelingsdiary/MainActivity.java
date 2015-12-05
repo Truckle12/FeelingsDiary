@@ -189,19 +189,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             createEntry();
         }else if (position == 1){ // open Calender
             openCalendar();
-        }else if(position ==2){ // Profile
-
-        }else if(position == 3){ // Settings
+        }else if(position == 2){ // Settings
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
-        }else if (position == 4){ // status
+        }else if (position == 3){ // status
             HashMap<String,ArrayList<EntryClass>> moods = mJournal.getEntries();
             String emotion = findEmotion(moods);
             Intent intent = new Intent(this, Summary.class);
             Log.i(TAG,"setting up Intent in MainActivity  and the emotion is " +emotion);
             intent.putExtra("mood",emotion);
             startActivity(intent);
-        }else if( position == 5 ){  //LOGIN
+        }else if( position == 4 ){  //LOGIN
             SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
             SharedPreferences.Editor prefEditor = preferences.edit();
             prefEditor.putString("loggedin", "false");

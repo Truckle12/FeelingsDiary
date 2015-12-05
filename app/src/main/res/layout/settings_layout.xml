@@ -7,45 +7,77 @@
     tools:context="com.example.ssteffanus.feelingsdiary.SettingsActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentStart="true">
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Change Username/Password:"
+            android:textColor="#000000"
+            android:id="@+id/textView10" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pick New Alarm Time:"
-            android:id="@+id/time_picker_button"
-            android:layout_alignParentStart="true"
+            android:text="Update Credentials"
+            android:id="@+id/credentials_button" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:layout_weight="1"/>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Set Daily Reminder Time:"
+            android:textColor="#000000"
+            android:id="@+id/textView11" />
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update"
-            android:id="@+id/set_button"
-            android:layout_below="@+id/time_picker_button"
-            android:layout_alignParentStart="true"
-            android:layout_weight="1" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick New Time:"
+                android:id="@+id/time_picker_button"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:id="@+id/set_button"
+                android:layout_below="@+id/time_picker_button"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_weight="10"/>
 
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update Credentials"
-        android:id="@+id/credentials_button"
-        android:layout_marginTop="50dp" />
 
 </RelativeLayout>

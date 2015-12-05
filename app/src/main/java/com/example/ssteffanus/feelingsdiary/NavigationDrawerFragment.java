@@ -98,9 +98,8 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         "Create New Entry",
                         "Open Calendar",
-                        getString(R.string.title_section1),
                         getString(R.string.title_section2),
-                        getString(R.string.title_section3),
+                        "Summary",
                         "Log Out"
 
                 }));
