@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.*;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import android.util.Log;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -56,6 +59,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+        final ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                createEntry();
+            }
+        });
+
+
     }
     
     private void openCalendar() {
@@ -70,6 +83,22 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     @Override
     protected  void onStart(){
         super.onStart();
+        if(authenticate() != true){
+            Intent intent_login = new Intent(this, LoginActivity.class);
+            startActivity(intent_login);
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(authenticate() != true){
+            Intent intent_login = new Intent(this, LoginActivity.class);
+            startActivity(intent_login);
+        }
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
         if(authenticate() != true){
             Intent intent_login = new Intent(this, LoginActivity.class);
             startActivity(intent_login);
@@ -171,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }else if( position == 5 ){  //LOGIN
             SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
             SharedPreferences.Editor prefEditor = preferences.edit();
-            prefEditor.putString("loggedin", "true");
+            prefEditor.putString("loggedin", "false");
             prefEditor.commit();
             Intent intent_login = new Intent(this, LoginActivity.class);
             startActivity(intent_login);

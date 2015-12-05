@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/pre-dexed/debug/classes-d966aedfade2961c4239567490024a67ff82d797.jar" />
-    </item>
-    <item
-        jar="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/pre-dexed/debug/classes-22967d82d9bf4e6ea68b974231b0a65bb95998e9.jar" />
-    </item>
-    <item
-        jar="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jar="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/pre-dexed/debug/classes-017a214c1d2f70ea603e8db5d0fe3850e18f2b94.jar" />
+        <dex dex="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\pre-dexed\debug\classes-6d3e6f5be820a5c1673c7fae388d0ad0c71f5aba.jar" />
     </item>
     <item
-        jar="/Users/harrisonpierce/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jar="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-80d07357b5473246a3d4f0636fb0137e7352ccd2.jar" />
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\pre-dexed\debug\classes-51846f6ed8a02d9d7de7001113140b1255e13226.jar" />
     </item>
     <item
-        jar="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/pre-dexed/debug/classes-f16195588c1f839c20d4164dbab7e7a2eaafcea4.jar" />
-    </item>
-    <item
-        jar="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jar="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/harrisonpierce/Desktop/FeelingsDiary/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-c15e5616436466e7822039b36fc18aa488679f0f.jar" />
+        <dex dex="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-9c98ea49eb67c9f03a0d3f8f8dc34c243dcd3396.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jake\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-fa3d7fcd7b9b0ca9deb9d5a6973552a40f88a130.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\pre-dexed\debug\classes-12567db171c9e62c5ba270a9f034a41a12ebd50a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Jake\Documents\GitHub\FeelingsDiary\app\build\intermediates\pre-dexed\debug\classes-d7078f8915cfea7f752f8845576ef893a5701b34.jar" />
     </item>
 
 </items>
