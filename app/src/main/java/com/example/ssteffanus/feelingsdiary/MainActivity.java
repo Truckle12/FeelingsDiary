@@ -110,16 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             startActivity(intent_login);
         }
     }
-    @Override
-    public void onPause() {
-        super.onPause();
-        if(authenticate() != true){
-            Intent intent_login = new Intent(this, LoginActivity.class);
-            startActivity(intent_login);
-        }
-    }
-
-
 
 
     private boolean authenticate() {
