@@ -39,7 +39,7 @@
                 android:id="@+id/imageButton_happy"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
             <ImageButton
@@ -48,7 +48,7 @@
                 android:id="@+id/imageButton_excited"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
             <ImageButton
@@ -57,7 +57,7 @@
                 android:id="@+id/imageButton_bored"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
         </LinearLayout>
@@ -113,7 +113,7 @@
                 android:id="@+id/imageButton_surprised"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
             <ImageButton
@@ -122,7 +122,7 @@
                 android:id="@+id/imageButton_calm"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
             <ImageButton
@@ -131,7 +131,7 @@
                 android:id="@+id/imageButton_disappointed"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
         </LinearLayout>
@@ -182,30 +182,30 @@
             android:layout_gravity="center_horizontal">
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:id="@+id/imageButton_sad"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:id="@+id/imageButton_scared"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:id="@+id/imageButton_angry"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:src="@drawable/black_square"
+
                 android:scaleType="fitXY"/>
         </LinearLayout>
 

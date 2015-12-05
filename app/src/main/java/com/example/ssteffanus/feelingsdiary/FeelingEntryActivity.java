@@ -22,7 +22,6 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feeling_entry_layout);
-        getSupportActionBar().setTitle("Create New Entry");
 
         IB_happy = (ImageButton)findViewById(R.id.imageButton_happy);
         IB_excited = (ImageButton)findViewById(R.id.imageButton_excited);
@@ -34,6 +33,15 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
         IB_scared = (ImageButton)findViewById(R.id.imageButton_scared);
         IB_angry = (ImageButton)findViewById(R.id.imageButton_angry);
 
+        IB_happy.setImageBitmap(MainActivity.happyImage);
+        IB_excited.setImageBitmap(MainActivity.excitedImage);
+        IB_bored.setImageBitmap(MainActivity.boredImage);
+        IB_surprised.setImageBitmap(MainActivity.surprisedImage);
+        IB_calm.setImageBitmap(MainActivity.calmImage);
+        IB_disappointed.setImageBitmap(MainActivity.disappointedImage);
+        IB_sad.setImageBitmap(MainActivity.sadImage);
+        IB_scared.setImageBitmap(MainActivity.scaredImage);
+        IB_angry.setImageBitmap(MainActivity.angryImage);
 
         IB_happy.setOnClickListener(this);
         IB_excited.setOnClickListener(this);
@@ -111,4 +119,25 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_feeling_entry, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

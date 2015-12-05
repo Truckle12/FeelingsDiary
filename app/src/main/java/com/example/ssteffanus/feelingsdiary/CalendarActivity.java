@@ -14,16 +14,27 @@ import java.util.HashMap;
  * Created by ssteffanus on 11/6/2015.
  */
 public class CalendarActivity extends Activity{
+    CalendarView mCalendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_layout);
-        final CalendarView calendarView=(CalendarView) findViewById(R.id.calendarView);
-        calendarView.setOnDateChangeListener(new OnDateChangeListener() {
+        setUpCalendar();
+    }
+
+    public void setUpCalendar() {
+
+        mCalendar = (CalendarView) findViewById(R.id.calendarView);
+        mCalendar.setShowWeekNumber(false);
+        mCalendar.setSelectedWeekBackgroundColor(getResources().getColor(R.color.skyblue));
+        mCalendar.setSelectedDateVerticalBar(R.color.deep_skyblue);
+
+
+        mCalendar.setOnDateChangeListener(new OnDateChangeListener() {
 
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month,
-                                            int dayOfMonth) {
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 HashMap<String,ArrayList<EntryClass>> entries =  MainActivity.mJournal.getEntries();
 
                 String dateStr;

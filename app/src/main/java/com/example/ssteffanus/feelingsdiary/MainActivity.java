@@ -32,6 +32,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private NavigationDrawerFragment mNavigationDrawerFragment;
     public static Bitmap defaultImage;
+    public static Bitmap happyImage, sadImage, excitedImage, calmImage, disappointedImage, angryImage, surprisedImage, boredImage, scaredImage;
     private CharSequence mTitle;
     public static JournalClass mJournal = new JournalClass();
     static final int FEELING_ENTRY_CODE = 0;
@@ -47,6 +48,19 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        defaultImage = BitmapFactory.decodeResource(getResources(),R.drawable.default_image);
+        happyImage = BitmapFactory.decodeResource(getResources(),R.drawable.happy_puppy);
+        sadImage = BitmapFactory.decodeResource(getResources(),R.drawable.sad_puppy);
+        angryImage = BitmapFactory.decodeResource(getResources(),R.drawable.angry_puppy);
+        scaredImage = BitmapFactory.decodeResource(getResources(),R.drawable.scared_puppy);
+        excitedImage = BitmapFactory.decodeResource(getResources(),R.drawable.excited_puppy);
+        calmImage = BitmapFactory.decodeResource(getResources(),R.drawable.calm_puppy);
+        disappointedImage = BitmapFactory.decodeResource(getResources(),R.drawable.disappointed_puppy);
+        surprisedImage = BitmapFactory.decodeResource(getResources(),R.drawable.surprised_puppy);
+        boredImage = BitmapFactory.decodeResource(getResources(),R.drawable.bored_puppy);
+
+
         defaultImage = BitmapFactory.decodeResource(getResources(),R.drawable.default_image);
         //firstOpen = true;
         mNavigationDrawerFragment = (NavigationDrawerFragment)
