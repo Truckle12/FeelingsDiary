@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Home");
         defaultImage = BitmapFactory.decodeResource(getResources(),R.drawable.default_image);
         //firstOpen = true;
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     @Override
     public void onResume() {
         super.onResume();
+        getSupportActionBar().setTitle("Home");
         if(authenticate() != true){
             Intent intent_login = new Intent(this, LoginActivity.class);
             startActivity(intent_login);

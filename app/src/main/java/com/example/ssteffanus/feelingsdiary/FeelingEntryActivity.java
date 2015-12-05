@@ -23,7 +23,6 @@ public class FeelingEntryActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feeling_entry_layout);
         getSupportActionBar().setTitle("Create New Entry");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         IB_happy = (ImageButton)findViewById(R.id.imageButton_happy);
         IB_excited = (ImageButton)findViewById(R.id.imageButton_excited);
