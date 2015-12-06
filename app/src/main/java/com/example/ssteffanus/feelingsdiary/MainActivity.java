@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 startActivity(intent_login);
         }
     }
-d
     private boolean authenticate() {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
         String username = preferences.getString("username", "defaultvalue");

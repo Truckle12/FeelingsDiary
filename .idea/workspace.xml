@@ -17,10 +17,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daddc711-7ef6-476a-bef6-bafeed26beff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ssteffanus/feelingsdiary/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ssteffanus/feelingsdiary/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -66,15 +62,15 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ssteffanus/feelingsdiary/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5879733">
-              <caret line="116" column="1" selection-start-line="116" selection-start-column="1" selection-end-line="116" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.5634744">
+              <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3854#3855#0" expanded="true" />
                 <element signature="e#3891#3892#0" expanded="true" />
-                <element signature="e#5416#5428#0" expanded="true" />
-                <element signature="e#5587#5617#0" expanded="true" />
-                <element signature="e#5826#5838#0" expanded="true" />
+                <element signature="e#5414#5426#0" expanded="true" />
+                <element signature="e#5585#5615#0" expanded="true" />
+                <element signature="e#5824#5836#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1951,7 +1947,13 @@
       <option name="project" value="LOCAL" />
       <updated>1449441820971</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed double register bug">
+      <created>1449444450163</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1449444450163</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2030,7 +2032,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added the text to the image&#10;" />
     <MESSAGE value="fixed double log in bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed double log in bug" />
+    <MESSAGE value="fixed double register bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed double register bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2058,9 +2061,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#3854#3855#0" expanded="true" />
             <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#5416#5428#0" expanded="true" />
-            <element signature="e#5587#5617#0" expanded="true" />
-            <element signature="e#5826#5838#0" expanded="true" />
+            <element signature="e#5414#5426#0" expanded="true" />
+            <element signature="e#5585#5615#0" expanded="true" />
+            <element signature="e#5824#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2143,9 +2146,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#3854#3855#0" expanded="true" />
             <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#5416#5428#0" expanded="true" />
-            <element signature="e#5587#5617#0" expanded="true" />
-            <element signature="e#5826#5838#0" expanded="true" />
+            <element signature="e#5414#5426#0" expanded="true" />
+            <element signature="e#5585#5615#0" expanded="true" />
+            <element signature="e#5824#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2202,9 +2205,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#3854#3855#0" expanded="true" />
             <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#5416#5428#0" expanded="true" />
-            <element signature="e#5587#5617#0" expanded="true" />
-            <element signature="e#5826#5838#0" expanded="true" />
+            <element signature="e#5414#5426#0" expanded="true" />
+            <element signature="e#5585#5615#0" expanded="true" />
+            <element signature="e#5824#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2250,9 +2253,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#3854#3855#0" expanded="true" />
             <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#5416#5428#0" expanded="true" />
-            <element signature="e#5587#5617#0" expanded="true" />
-            <element signature="e#5826#5838#0" expanded="true" />
+            <element signature="e#5414#5426#0" expanded="true" />
+            <element signature="e#5585#5615#0" expanded="true" />
+            <element signature="e#5824#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2287,9 +2290,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#3854#3855#0" expanded="true" />
             <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#5416#5428#0" expanded="true" />
-            <element signature="e#5587#5617#0" expanded="true" />
-            <element signature="e#5826#5838#0" expanded="true" />
+            <element signature="e#5414#5426#0" expanded="true" />
+            <element signature="e#5585#5615#0" expanded="true" />
+            <element signature="e#5824#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2500,15 +2503,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ssteffanus/feelingsdiary/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5879733">
-          <caret line="116" column="1" selection-start-line="116" selection-start-column="1" selection-end-line="116" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.5634744">
+          <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3854#3855#0" expanded="true" />
             <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#5416#5428#0" expanded="true" />
-            <element signature="e#5587#5617#0" expanded="true" />
-            <element signature="e#5826#5838#0" expanded="true" />
+            <element signature="e#5414#5426#0" expanded="true" />
+            <element signature="e#5585#5615#0" expanded="true" />
+            <element signature="e#5824#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>
