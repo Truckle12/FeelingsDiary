@@ -6,6 +6,7 @@ import android.content.Context;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Notification;
+import android.graphics.BitmapFactory;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -22,7 +23,9 @@ public class NotificationService extends BroadcastReceiver{
         notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.default_image)
+                        .setSmallIcon(R.drawable.icon)
+                        .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                                R.mipmap.ic_launcher))
                         .setContentTitle("FeelingsDiary")
                         .setContentText("How Are You Feeling?");
 
