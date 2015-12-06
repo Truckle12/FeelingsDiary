@@ -33,41 +33,39 @@ public class Summary  extends Activity {
         //Display the emotion on the screen
         switch(emotion){
             case "Happy":
-                editText.setText("HAPPY!");
+                editText.setText("HAPPY");
                 break;
             case "Sad":
-                editText.setText("SAD!");
+                editText.setText("SAD");
                 break;
             case "Excited":
-                editText.setText("EXCITED!");
+                editText.setText("EXCITED");
                 break;
             case "Bored":
-                editText.setText("BORED!");
+                editText.setText("BORED");
                 break;
             case "Surprised":
-                editText.setText("SURPRISED!");
+                editText.setText("SURPRISED");
                 break;
             case "Calm":
-                editText.setText("CALM!");
+                editText.setText("CALM");
                 break;
             case "Disappointed":
-                editText.setText("DISAPPOINTED!");
+                editText.setText("DISAPPOINTED");
                 break;
             case "Scared":
-                editText.setText("SCARED!");
+                editText.setText("SCARED");
                 break;
             case "Angry":
-                editText.setText("ANGRY!");
+                editText.setText("ANGRY");
                 break;
             default:
-                editText.setText("ERROR!");
+                editText.setText("ERROR");
 
         }
 
         diagnose(emotion);
     }
-
-
 
     //Tell the user some advice about their emotion
     public void diagnose(String emotion){
