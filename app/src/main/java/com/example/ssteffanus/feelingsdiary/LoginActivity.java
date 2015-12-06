@@ -64,6 +64,15 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
+        String loggedin = preferences.getString("loggedin", "defaultvalue");
+        if(loggedin.toString().equals("true")){
+            finish();
+        }
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);

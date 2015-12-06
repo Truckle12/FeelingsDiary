@@ -1,8 +1,10 @@
 package com.example.ssteffanus.feelingsdiary;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,8 @@ import android.widget.ListView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.*;
 import android.widget.ArrayAdapter;
+import android.app.ActivityManager.RunningTaskInfo;
+import java.util.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -106,11 +110,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onResume();
         getSupportActionBar().setTitle("Home");
         if(authenticate() != true){
-            Intent intent_login = new Intent(this, LoginActivity.class);
-            startActivity(intent_login);
+                Intent intent_login = new Intent(this, LoginActivity.class);
+                startActivity(intent_login);
         }
     }
-
 
     private boolean authenticate() {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
@@ -211,8 +214,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             prefEditor.commit();
             Intent intent_login = new Intent(this, LoginActivity.class);
             startActivity(intent_login);
-
-
         }
 
     }
