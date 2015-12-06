@@ -47,14 +47,15 @@
 
 
     <string name="diagnosis_happy">Keep up the positive attitude! Always keep on smiling and doing great! </string>
-    <string name="diagnosis_excited">Excited</string>
-    <string name="diagnosis_bored">Try joining an extra corricular, read a book, cook some food, or get some exercise!</string>
-    <string name="diagnosis_surprised">Surprised</string>
-    <string name="diagnosis_calm">Calm</string>
-    <string name="diagnosis_disappointed">Disappointed</string>
-    <string name="diagnosis_sad">Sad</string>
-    <string name="diagnosis_scared">Scared</string>
-    <string name="diagnosis_angry">Try to relax, and calm your anger.</string>
+    <string name="diagnosis_excited">Something exciting just happened! Enjoy the moment!</string>
+    <string name="diagnosis_bored">Try joining an extra curricular, read a book, cook some food, or get some exercise!</string>
+    <string name="diagnosis_surprised">Take a moment to introspect and think about why you are surprised.</string>
+    <string name="diagnosis_calm">Make sure you recognize the balance you currently have achieved, and be proud of your accomplishments.</string>
+    <string name="diagnosis_disappointed">Choose one person that you love, and loves you, and tell them how much you appreciate them.</string>
+    <string name="diagnosis_sad">Try to think of the positive in every situation. Be grateful for everything you have in your life.</string>
+    <string name="diagnosis_scared">Being scared is natural and okay. Try to relax and think positively.</string>
+    <string name="diagnosis_angry">Everyone gets angry sometimes. Try to relax, and calm your anger by thinking of the bright side of every situation.</string>
+
     <string name="title_activity_text_entry">TextEntryActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
