@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         super.onBackPressed();
     }
 
-
+/*
     @Override
     protected  void onStart(){
         super.onStart();
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             Intent intent_login = new Intent(this, LoginActivity.class);
             startActivity(intent_login);
         }
-    }
+    }*/
     @Override
     public void onResume() {
         super.onResume();
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 startActivity(intent_login);
         }
     }
-
+d
     private boolean authenticate() {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
         String username = preferences.getString("username", "defaultvalue");
